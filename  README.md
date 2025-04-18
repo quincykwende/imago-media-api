@@ -13,7 +13,7 @@ cd imago-media-api/
 docker-compose up --build
 ```
 
-## Run via dev server
+## Run with Uvicorn:
 
 ### 1. Create virtual env
 
@@ -44,6 +44,13 @@ cp .env.example .env
 ```bash
 fastapi dev app/main.py --port=8000
 ```
+
+-- OR --
+
+```bash
+uvicorn app.main:app --reload --port=8000
+```
+
 
 The API will be available at http://localhost:8000
 

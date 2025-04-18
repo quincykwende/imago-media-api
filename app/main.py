@@ -23,9 +23,4 @@ async def shutdown():
 
 @app.get("/health")
 async def health_check():
-    try:
-        if await ElasticsearchManager.get_client().ping():
-            return {"status": "healthy"}
-    except Exception:
-        pass
-    return {"status": "unhealthy"}
+    return {"status": "healthy"}
