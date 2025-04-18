@@ -1,9 +1,14 @@
 from app.config import settings
 
-def generate_thumbnail_path(db: str, image_number: str) -> str:
-    """
-    Generate consistent thumbnail URLs
-    Format: https://www.imago-images.de/bild/{db}/{padded_bildnummer}/s.jpg
-    """
-    padded_num = image_number.zfill(10)
-    return f"{settings.image_base_url}/bild/{db}/{padded_num}/s.jpg"
+def generate_thumbnail_path(db: str, bildnummer: str) -> str:
+    """Generate image URL with zero-padded bildnummer"""
+    return f"{settings.image_base_url}/bild/{db}/{bildnummer.zfill(10)}/s.jpg"
+
+def extract_copyright(text: str) -> str:
+    """Extract copyright information from suchtext"""
+    print(text)
+    copyright_marker = "Copyright:"
+    if copyright_marker in text:
+        copyright_part = text.split(copyright_marker)[-1]
+        return copyright_part.split("ABACAPRESS")[0].strip()
+    return ""

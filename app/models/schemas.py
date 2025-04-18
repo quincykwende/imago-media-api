@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from typing import Optional
 from datetime import datetime
 
@@ -6,9 +6,17 @@ class MediaMetadata(BaseModel):
     image_number: str
     date: Optional[datetime] = None
     photographer: Optional[str] = None
-    dimensions: Optional[str] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
     copyright: Optional[str] = None
     db: str
+
+    @field_validator('width', 'height', mode='before')
+    def parse_dimensions(cls, value):
+        try:
+            return int(value) if value else None
+        except ValueError:
+            return None
 
 class MediaItem(BaseModel):
     id: str
