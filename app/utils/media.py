@@ -5,10 +5,10 @@ def generate_thumbnail_path(db: str, bildnummer: str) -> str:
     return f"{settings.image_base_url}/bild/{db}/{bildnummer.zfill(10)}/s.jpg"
 
 def extract_copyright(text: str) -> str:
-    """Extract copyright information from suchtext"""
-    print(text)
+    """Extract the first word after Copyright: marker"""
     copyright_marker = "Copyright:"
     if copyright_marker in text:
-        copyright_part = text.split(copyright_marker)[-1]
-        return copyright_part.split("ABACAPRESS")[0].strip()
+        parts = text.split(copyright_marker, 1)
+        copyright_words = parts[1].strip().split()
+        return copyright_words[0] if copyright_words else ""
     return ""

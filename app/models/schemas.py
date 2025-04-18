@@ -3,13 +3,12 @@ from typing import Optional
 from datetime import datetime
 
 class MediaMetadata(BaseModel):
-    image_number: str
+    image_id: str
     date: Optional[datetime] = None
     photographer: Optional[str] = None
     width: Optional[int] = None
     height: Optional[int] = None
     copyright: Optional[str] = None
-    db: str
 
     @field_validator('width', 'height', mode='before')
     def parse_dimensions(cls, value):
