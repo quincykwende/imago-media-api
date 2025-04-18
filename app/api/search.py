@@ -45,7 +45,7 @@ async def search_media(
             MediaItem(
                 id=hit["_id"],
                 title=hit["_source"].get("suchtext", ""),
-                thumbnail=generate_thumbnail_path(hit["_source"].get("db", "st"), hit["_source"].get("bildnummer", "")),
+                image=generate_thumbnail_path(hit["_source"].get("db", "st"), hit["_source"].get("bildnummer", "")),
                 metadata=MediaMetadata(
                     image_number=hit["_source"].get("bildnummer", ""),
                     date=hit["_source"].get("datum"),

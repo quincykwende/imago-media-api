@@ -13,7 +13,7 @@ class MediaMetadata(BaseModel):
 class MediaItem(BaseModel):
     id: str
     title: str
-    thumbnail: str
+    image: str
     metadata: MediaMetadata
 
 class SearchResponse(BaseModel):
